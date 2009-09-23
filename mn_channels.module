@@ -1,0 +1,75 @@
+<?php
+
+include_once('mn_channels.features.inc');
+
+/**
+ * Implementation of hook_help().
+ */
+function mn_channels_help($path, $arg) {
+  switch ($path) {
+    case 'channels':
+      $output = '<p>';
+      $output .= t('<em>Channels</em> are groups of stories that have been picked by users that relate to the same topic. You can view the stories in each channel by clicking on its title in the left-hand sidebar.');
+      $output .= "</p>";
+      if (node_access('create', 'channel')) {
+        $output .= "<ul>";
+        $output .= "<li>". t("!create a new channel. You can begin adding stories to it by setting it as the active channel using the star icon to your lower right.", array('!create' => l(t('Create'), 'node/add/channel'))) ."</li>";
+        $output .= "</ul>";
+      }
+      return $output;
+    break;
+  }
+}
+
+/**
+ * Implementation of hook_enable().
+ */
+function mn_channels_enable() {
+  global $user;
+  $node = new stdClass();
+  $node->uid = $user->uid;
+  $node->title = "Example channel";
+  $node->type = 'channel';
+  $node->body = "You can collect news into a channel. Users can read this channel and subscribe to it. This is an example channel. Rename it for your purposes or remove it if you don't need it.";
+  node_save($node);
+}
+
+/**
+ * Override node callback. Invoked from mn_core.
+ */
+function mn_channels_node_page_view($node, $cid = NULL) {
+  drupal_set_title(t('News on @title', array('@title' => $node->title)));
+  context_set_by_condition('node', $node->type);
+  $view = views_get_view('mn_channels_news');
+  return $view->execute_display('page_1', array($node->nid));
+}
+
+/**
+ * Override feedapi_data_bulk_delete. 
+ * Don't delete feedapi_data records that have been referenced by data_node
+ */
+function feedapi_data_custom_bulk_delete($feed_node, $condition, $value) {
+  if (!$table = _feedapi_data_get($feed_node->type)) {
+    return 0;
+  }
+  // Data joins.
+  // Delete all ASSUMED 'dependent' records that join on unique feed id.
+  $joined_tables = _feedapi_data_get_joined_tables($table);
+  foreach ($joined_tables AS $join_table) {
+    $meta = $join_table->get('meta');
+    $join = $meta['join'][$table->get('name')];
+    db_query('DELETE right_table 
+      FROM {'. db_escape_table($join_table->get('name')) . '} right_table 
+      INNER JOIN {'. db_escape_table($table->get('name')) .'} feed_item_table ON right_table.'. $join['field'] .' = feed_item_table.'. $join['left_field'] .' 
+      LEFT JOIN {data_table_node} dn ON feed_item_table.id = dn.id 
+      WHERE dn.id IS NULL AND '. $condition, $value);
+  }
+  
+  // Feed item data table.
+  db_query("DELETE feed_item_table 
+    FROM {%s} feed_item_table 
+    LEFT JOIN {data_table_node} dn ON feed_item_table.id = dn.id 
+    WHERE dn.id IS NULL AND ". $condition, 
+    $table->get('name'), $value);
+  return $count;
+}
