@@ -157,10 +157,12 @@ function _mn_channels_openlayers_presets() {
         'distinct' => '5',
       ),
       'openlayers_behavior_navigation' => array(),
+      'openlayers_behavior_attribution' => array(),
     ),
-    'default_layer' => 'world',
+    'default_layer' => 'world_light',
     'layers' => array(
-      'world' => 'world',
+      'world_light' => 'world_light',
+      'osmmapnik' => 'osmmapnik',
       'mn_channels_news_attachment_1' => 'mn_channels_news_attachment_1',
     ),
     'layer_styles' => array(),
@@ -215,6 +217,8 @@ function _mn_channels_openlayers_presets() {
       ),
       'openlayers_behavior_navigation' => array(),
       'openlayers_behavior_panzoombar' => array(),
+      'openlayers_behavior_attribution' => array(),
+      'openlayers_behavior_permalink' => array(),
     ),
     'default_layer' => 'world_light',
     'layers' => array(
