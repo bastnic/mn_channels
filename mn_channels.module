@@ -13,7 +13,7 @@ function mn_channels_help($path, $arg) {
       $output .= "</p>";
       if (node_access('create', 'channel')) {
         $output .= "<ul>";
-        $output .= "<li>". t("!create a new channel. You can begin adding stories to it by setting it as the active channel using the star icon to your lower right.", array('!create' => l(t('Create'), 'node/add/channel'))) ."</li>";
+        $output .= "<li>". t("!create a new channel. You can begin adding stories to it by setting it as the active channel on Feeds and Search pages using the star icon to your lower right.", array('!create' => l(t('Create'), 'node/add/channel'))) ."</li>";
         $output .= "</ul>";
       }
       return $output;
