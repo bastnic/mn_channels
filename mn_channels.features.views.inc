@@ -2317,10 +2317,39 @@ function _mn_channels_views_default_views() {
         'button' => 'Use default',
       ),
     ),
+    'name' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'strip_tags' => 0,
+        'html' => 0,
+      ),
+      'link_to_taxonomy' => 0,
+      'exclude' => 0,
+      'id' => 'name',
+      'table' => 'term_data',
+      'field' => 'name',
+      'relationship' => 'tid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
   ));
   $handler->override_option('style_plugin', 'openlayers_data');
   $handler->override_option('style_options', array(
-    'grouping' => 'timestamp',
+    'grouping' => 'name',
     'data_source' => array(
       'value' => array(),
       'other_lat' => 'lat',
