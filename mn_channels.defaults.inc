@@ -13,7 +13,6 @@ function _mn_channels_context_default_contexts() {
     'description' => '',
     'node' => array(
       '0' => 'channel',
-      '1' => 'feed',
     ),
     'path' => array(
       'feeds*' => 'feeds*',

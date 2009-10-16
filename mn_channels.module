@@ -130,3 +130,13 @@ function mn_channels_views_pre_build(&$view) {
     $view->display_handler->set_option('fields', $fields);
   }
 }
+
+/**
+ * Implementation of hook_context_links_alter().
+ * Yank out the channel link from where it does not belong.
+ */
+function mn_channels_context_links_alter(&$links) {
+  if (isset($links['channel']) && context_get('mn', 'section') !== 'channels') {
+    unset($links['channel']);
+  }
+}
