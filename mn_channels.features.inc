@@ -28,6 +28,15 @@ function mn_channels_node_info() {
 }
 
 /**
+ * Implementation of hook_user_default_permissions().
+ */
+function mn_channels_user_default_permissions() {
+  module_load_include('inc', 'mn_channels', 'mn_channels.defaults');
+  $args = func_get_args();
+  return call_user_func_array('_mn_channels_user_default_permissions', $args);
+}
+
+/**
  * Implementation of hook_views_default_views().
  */
 function mn_channels_views_default_views() {

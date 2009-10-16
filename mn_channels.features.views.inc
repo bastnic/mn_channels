@@ -382,17 +382,17 @@ function _mn_channels_views_default_views() {
   $view->description = 'MN > Channels > News view';
   $view->tag = 'mn';
   $view->view_php = '';
-  $view->base_table = 'data_table_feedapi_feed';
+  $view->base_table = 'feeds_data_syndication';
   $view->is_cacheable = FALSE;
   $view->api_version = 2;
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('relationships', array(
     'feed_nid' => array(
-      'label' => 'data_table_feedapi_feed.feed_nid -> node.nid',
+      'label' => 'feeds_data_syndication.feed_nid -> node.nid',
       'required' => 1,
       'id' => 'feed_nid',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'feed_nid',
       'override' => array(
         'button' => 'Override',
@@ -403,7 +403,7 @@ function _mn_channels_views_default_views() {
       'label' => 'Relate this data table to data_table_node',
       'required' => 0,
       'id' => 'data_table_node_rel',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_table_node_rel',
       'relationship' => 'none',
     ),
@@ -417,7 +417,7 @@ function _mn_channels_views_default_views() {
     ),
     'tid' => array(
       'id' => 'tid',
-      'table' => 'data_table_feedapi_feed_term',
+      'table' => 'data_table_term',
       'field' => 'tid',
     ),
   ));
@@ -448,8 +448,8 @@ function _mn_channels_views_default_views() {
       'field' => 'nid',
       'relationship' => 'feed_nid',
     ),
-    'options_original_url' => array(
-      'label' => 'Options original url',
+    'url' => array(
+      'label' => 'URL',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -468,9 +468,9 @@ function _mn_channels_views_default_views() {
         'html' => 0,
       ),
       'exclude' => 1,
-      'id' => 'options_original_url',
-      'table' => 'data_table_feedapi_feed',
-      'field' => 'options_original_url',
+      'id' => 'url',
+      'table' => 'feeds_data_syndication',
+      'field' => 'url',
       'relationship' => 'none',
     ),
     'timestamp' => array(
@@ -496,7 +496,7 @@ function _mn_channels_views_default_views() {
       'custom_date_format' => 'F j, Y',
       'exclude' => 1,
       'id' => 'timestamp',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'relationship' => 'none',
       'override' => array(
@@ -526,7 +526,7 @@ function _mn_channels_views_default_views() {
       'custom_date_format' => 'g:ia',
       'exclude' => 0,
       'id' => 'timestamp_1',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'override' => array(
         'button' => 'Override',
@@ -568,7 +568,7 @@ function _mn_channels_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 1,
-        'path' => '[options_original_url]',
+        'path' => '[url]',
         'link_class' => '',
         'alt' => '',
         'prefix' => '',
@@ -583,7 +583,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'title',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'title',
       'relationship' => 'none',
     ),
@@ -608,7 +608,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'description',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'description',
       'relationship' => 'none',
       'override' => array(
@@ -636,7 +636,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'data_node_add_remove',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_node_add_remove',
       'relationship' => 'none',
     ),
@@ -661,7 +661,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'data_node_list',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_node_list',
       'override' => array(
         'button' => 'Override',
@@ -684,7 +684,7 @@ function _mn_channels_views_default_views() {
     'timestamp' => array(
       'order' => 'DESC',
       'id' => 'timestamp',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'override' => array(
         'button' => 'Override',
@@ -786,12 +786,12 @@ function _mn_channels_views_default_views() {
         'html' => FALSE,
       ),
       'series' => array(
-        'field' => 'data_table_feedapi_feed.timestamp',
+        'field' => 'feeds_data_syndication.timestamp',
         'grouping' => 'Y-m-d-3',
         'date_format' => 'small',
       ),
       'value' => array(
-        'field' => 'data_table_feedapi_feed.id',
+        'field' => 'feeds_data_syndication.id',
         'format' => 'count',
       ),
       'exclude' => 0,
@@ -808,7 +808,7 @@ function _mn_channels_views_default_views() {
     'timestamp' => array(
       'order' => 'ASC',
       'id' => 'timestamp',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'override' => array(
         'button' => 'Use default',
@@ -880,7 +880,7 @@ function _mn_channels_views_default_views() {
         'label' => '',
       ),
       'id' => 'timestamp',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'override' => array(
         'button' => 'Use default',
@@ -910,10 +910,10 @@ function _mn_channels_views_default_views() {
   $handler = $view->new_display('block', 'Block: Map', 'block_2');
   $handler->override_option('relationships', array(
     'feed_nid' => array(
-      'label' => 'data_table_feedapi_feed.feed_nid -> node.nid',
+      'label' => 'feeds_data_syndication.feed_nid -> node.nid',
       'required' => 1,
       'id' => 'feed_nid',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'feed_nid',
       'override' => array(
         'button' => 'Override',
@@ -924,7 +924,7 @@ function _mn_channels_views_default_views() {
       'label' => 'Relate this data table to data_table_node',
       'required' => 0,
       'id' => 'data_table_node_rel',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_table_node_rel',
       'relationship' => 'none',
     ),
@@ -937,10 +937,10 @@ function _mn_channels_views_default_views() {
       'relationship' => 'data_table_node_rel',
     ),
     'tid' => array(
-      'label' => 'data_table_feedapi_feed_term.tid -> term_data.tid',
+      'label' => 'data_table_term.tid -> term_data.tid',
       'required' => 1,
       'id' => 'tid',
-      'table' => 'data_table_feedapi_feed_term',
+      'table' => 'data_table_term',
       'field' => 'tid',
       'override' => array(
         'button' => 'Use default',
@@ -949,8 +949,8 @@ function _mn_channels_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
-    'options_original_url' => array(
-      'label' => 'Options original url',
+    'url' => array(
+      'label' => 'URL',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -969,9 +969,9 @@ function _mn_channels_views_default_views() {
         'html' => 0,
       ),
       'exclude' => 1,
-      'id' => 'options_original_url',
-      'table' => 'data_table_feedapi_feed',
-      'field' => 'options_original_url',
+      'id' => 'url',
+      'table' => 'feeds_data_syndication',
+      'field' => 'url',
       'relationship' => 'none',
     ),
     'title' => array(
@@ -980,7 +980,7 @@ function _mn_channels_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 1,
-        'path' => '[options_original_url]',
+        'path' => '[url]',
         'link_class' => '',
         'alt' => '',
         'prefix' => '',
@@ -996,7 +996,7 @@ function _mn_channels_views_default_views() {
       'hilight_search' => 1,
       'exclude' => 0,
       'id' => 'title',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'title',
       'relationship' => 'none',
       'override' => array(
@@ -1121,7 +1121,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'description',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'description',
       'relationship' => 'none',
       'override' => array(
@@ -1189,10 +1189,10 @@ function _mn_channels_views_default_views() {
   $handler = $view->new_display('feed', 'RSS Feed', 'feed_1');
   $handler->override_option('relationships', array(
     'feed_nid' => array(
-      'label' => 'data_table_feedapi_feed.feed_nid -> node.nid',
+      'label' => 'feeds_data_syndication.feed_nid -> node.nid',
       'required' => 1,
       'id' => 'feed_nid',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'feed_nid',
       'override' => array(
         'button' => 'Use default',
@@ -1203,7 +1203,7 @@ function _mn_channels_views_default_views() {
       'label' => 'Relate this data table to data_table_node.',
       'required' => 0,
       'id' => 'data_table_node_rel',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_table_node_rel',
       'override' => array(
         'button' => 'Use default',
@@ -1223,8 +1223,8 @@ function _mn_channels_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
-    'options_original_url' => array(
-      'label' => 'Options original url',
+    'url' => array(
+      'label' => 'URL',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -1243,9 +1243,9 @@ function _mn_channels_views_default_views() {
         'html' => 0,
       ),
       'exclude' => 1,
-      'id' => 'options_original_url',
-      'table' => 'data_table_feedapi_feed',
-      'field' => 'options_original_url',
+      'id' => 'url',
+      'table' => 'feeds_data_syndication',
+      'field' => 'url',
       'relationship' => 'none',
     ),
     'timestamp' => array(
@@ -1271,7 +1271,7 @@ function _mn_channels_views_default_views() {
       'custom_date_format' => 'D, d M Y H:i:s O',
       'exclude' => 1,
       'id' => 'timestamp',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'relationship' => 'none',
       'override' => array(
@@ -1284,7 +1284,7 @@ function _mn_channels_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 0,
-        'path' => '[options_original_url]',
+        'path' => '[url]',
         'link_class' => '',
         'alt' => '',
         'prefix' => '',
@@ -1300,7 +1300,7 @@ function _mn_channels_views_default_views() {
       'hilight_search' => 0,
       'exclude' => 0,
       'id' => 'title',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'title',
       'relationship' => 'none',
       'override' => array(
@@ -1329,7 +1329,7 @@ function _mn_channels_views_default_views() {
       'hilight_search' => 1,
       'exclude' => 0,
       'id' => 'description',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'description',
       'relationship' => 'none',
       'override' => array(
@@ -1404,7 +1404,7 @@ function _mn_channels_views_default_views() {
         'button' => 'Use default',
       ),
     ),
-    'options_raw_guid' => array(
+    'guid' => array(
       'label' => '',
       'alter' => array(
         'alter_text' => 0,
@@ -1424,9 +1424,9 @@ function _mn_channels_views_default_views() {
         'html' => 0,
       ),
       'exclude' => 0,
-      'id' => 'options_raw_guid',
-      'table' => 'data_table_feedapi_feed',
-      'field' => 'options_raw_guid',
+      'id' => 'guid',
+      'table' => 'feeds_data_syndication',
+      'field' => 'guid',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -1496,10 +1496,10 @@ function _mn_channels_views_default_views() {
     'fields' => array(
       'title' => 'title',
       'description' => 'description',
-      'link' => 'options_original_url',
+      'link' => 'url',
       'author' => '',
       'category' => '',
-      'guid' => 'options_raw_guid',
+      'guid' => 'guid',
       'pubDate' => 'timestamp',
     ),
     'georss' => array(
@@ -1529,8 +1529,8 @@ function _mn_channels_views_default_views() {
   $handler->override_option('sitename_title', FALSE);
   $handler = $view->new_display('mode', 'Mode: List', 'mode_1');
   $handler->override_option('fields', array(
-    'options_original_url' => array(
-      'label' => 'Options original url',
+    'url' => array(
+      'label' => 'URL',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -1549,9 +1549,9 @@ function _mn_channels_views_default_views() {
         'html' => 0,
       ),
       'exclude' => 1,
-      'id' => 'options_original_url',
-      'table' => 'data_table_feedapi_feed',
-      'field' => 'options_original_url',
+      'id' => 'url',
+      'table' => 'feeds_data_syndication',
+      'field' => 'url',
       'relationship' => 'none',
     ),
     'timestamp' => array(
@@ -1577,7 +1577,7 @@ function _mn_channels_views_default_views() {
       'custom_date_format' => 'F j, Y',
       'exclude' => 1,
       'id' => 'timestamp',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'relationship' => 'none',
       'override' => array(
@@ -1607,7 +1607,7 @@ function _mn_channels_views_default_views() {
       'custom_date_format' => 'g:ia',
       'exclude' => 0,
       'id' => 'timestamp_1',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'override' => array(
         'button' => 'Override',
@@ -1620,7 +1620,7 @@ function _mn_channels_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 1,
-        'path' => '[options_original_url]',
+        'path' => '[url]',
         'link_class' => '',
         'alt' => '',
         'prefix' => '',
@@ -1635,7 +1635,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'title',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'title',
       'relationship' => 'none',
     ),
@@ -1660,7 +1660,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'data_node_add_remove',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_node_add_remove',
       'relationship' => 'none',
     ),
@@ -1685,7 +1685,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'data_node_list',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_node_list',
       'override' => array(
         'button' => 'Override',
@@ -1714,7 +1714,7 @@ function _mn_channels_views_default_views() {
       'hilight_search' => 1,
       'exclude' => 0,
       'id' => 'description',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'description',
       'relationship' => 'none',
       'override' => array(
@@ -1731,10 +1731,10 @@ function _mn_channels_views_default_views() {
   $handler = $view->new_display('mode', 'Mode: Map', 'mode_2');
   $handler->override_option('relationships', array(
     'feed_nid' => array(
-      'label' => 'data_table_feedapi_feed.feed_nid -> node.nid',
+      'label' => 'feeds_data_syndication.feed_nid -> node.nid',
       'required' => 1,
       'id' => 'feed_nid',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'feed_nid',
       'override' => array(
         'button' => 'Override',
@@ -1745,7 +1745,7 @@ function _mn_channels_views_default_views() {
       'label' => 'Relate this data table to data_table_node',
       'required' => 0,
       'id' => 'data_table_node_rel',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_table_node_rel',
       'relationship' => 'none',
     ),
@@ -1758,10 +1758,10 @@ function _mn_channels_views_default_views() {
       'relationship' => 'data_table_node_rel',
     ),
     'tid' => array(
-      'label' => 'data_table_feedapi_feed_term.tid -> term_data.tid',
+      'label' => 'data_table_term.tid -> term_data.tid',
       'required' => 1,
       'id' => 'tid',
-      'table' => 'data_table_feedapi_feed_term',
+      'table' => 'data_table_term',
       'field' => 'tid',
       'override' => array(
         'button' => 'Use default',
@@ -1770,8 +1770,8 @@ function _mn_channels_views_default_views() {
     ),
   ));
   $handler->override_option('fields', array(
-    'options_original_url' => array(
-      'label' => 'Options original url',
+    'url' => array(
+      'label' => 'URL',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -1790,9 +1790,9 @@ function _mn_channels_views_default_views() {
         'html' => 0,
       ),
       'exclude' => 1,
-      'id' => 'options_original_url',
-      'table' => 'data_table_feedapi_feed',
-      'field' => 'options_original_url',
+      'id' => 'url',
+      'table' => 'feeds_data_syndication',
+      'field' => 'url',
       'relationship' => 'none',
     ),
     'title' => array(
@@ -1801,7 +1801,7 @@ function _mn_channels_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 1,
-        'path' => '[options_original_url]',
+        'path' => '[url]',
         'link_class' => '',
         'alt' => '',
         'prefix' => '',
@@ -1817,7 +1817,7 @@ function _mn_channels_views_default_views() {
       'hilight_search' => 1,
       'exclude' => 0,
       'id' => 'title',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'title',
       'relationship' => 'none',
       'override' => array(
@@ -1942,7 +1942,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'description',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'description',
       'relationship' => 'none',
       'override' => array(
@@ -1964,10 +1964,10 @@ function _mn_channels_views_default_views() {
   $handler = $view->new_display('attachment', 'Attachment', 'attachment_1');
   $handler->override_option('relationships', array(
     'feed_nid' => array(
-      'label' => 'data_table_feedapi_feed.feed_nid -> node.nid',
+      'label' => 'feeds_data_syndication.feed_nid -> node.nid',
       'required' => 1,
       'id' => 'feed_nid',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'feed_nid',
       'override' => array(
         'button' => 'Override',
@@ -1978,7 +1978,7 @@ function _mn_channels_views_default_views() {
       'label' => 'Relate this data table to data_table_node',
       'required' => 0,
       'id' => 'data_table_node_rel',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_table_node_rel',
       'relationship' => 'none',
     ),
@@ -1991,10 +1991,10 @@ function _mn_channels_views_default_views() {
       'relationship' => 'data_table_node_rel',
     ),
     'tid' => array(
-      'label' => 'data_table_feedapi_feed_term.tid -> term_data.tid',
+      'label' => 'data_table_term.tid -> term_data.tid',
       'required' => 1,
       'id' => 'tid',
-      'table' => 'data_table_feedapi_feed_term',
+      'table' => 'data_table_term',
       'field' => 'tid',
       'override' => array(
         'button' => 'Use default',
@@ -2029,8 +2029,8 @@ function _mn_channels_views_default_views() {
       'field' => 'nid',
       'relationship' => 'feed_nid',
     ),
-    'options_original_url' => array(
-      'label' => 'Options original url',
+    'url' => array(
+      'label' => 'URL',
       'alter' => array(
         'alter_text' => 0,
         'text' => '',
@@ -2049,9 +2049,9 @@ function _mn_channels_views_default_views() {
         'html' => 0,
       ),
       'exclude' => 1,
-      'id' => 'options_original_url',
-      'table' => 'data_table_feedapi_feed',
-      'field' => 'options_original_url',
+      'id' => 'url',
+      'table' => 'feeds_data_syndication',
+      'field' => 'url',
       'relationship' => 'none',
     ),
     'timestamp' => array(
@@ -2077,7 +2077,7 @@ function _mn_channels_views_default_views() {
       'custom_date_format' => 'F j, Y',
       'exclude' => 1,
       'id' => 'timestamp',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'relationship' => 'none',
       'override' => array(
@@ -2107,7 +2107,7 @@ function _mn_channels_views_default_views() {
       'custom_date_format' => 'g:ia',
       'exclude' => 0,
       'id' => 'timestamp_1',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'timestamp',
       'override' => array(
         'button' => 'Override',
@@ -2149,7 +2149,7 @@ function _mn_channels_views_default_views() {
         'alter_text' => 0,
         'text' => '',
         'make_link' => 1,
-        'path' => '[options_original_url]',
+        'path' => '[url]',
         'link_class' => '',
         'alt' => '',
         'prefix' => '',
@@ -2164,7 +2164,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'title',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'title',
       'relationship' => 'none',
     ),
@@ -2189,7 +2189,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'description',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'description',
       'relationship' => 'none',
       'override' => array(
@@ -2217,7 +2217,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'data_node_add_remove',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_node_add_remove',
       'relationship' => 'none',
     ),
@@ -2242,7 +2242,7 @@ function _mn_channels_views_default_views() {
       ),
       'exclude' => 0,
       'id' => 'data_node_list',
-      'table' => 'data_table_feedapi_feed',
+      'table' => 'feeds_data_syndication',
       'field' => 'data_node_list',
       'override' => array(
         'button' => 'Override',

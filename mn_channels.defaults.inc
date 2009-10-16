@@ -8,6 +8,36 @@ function _mn_channels_context_default_contexts() {
 
   $items[] = array(
     'namespace' => 'mn',
+    'attribute' => 'channels',
+    'value' => 'tools',
+    'description' => '',
+    'node' => array(
+      '0' => 'channel',
+      '1' => 'feed',
+    ),
+    'path' => array(
+      'feeds*' => 'feeds*',
+      'search*' => 'search*',
+      'stored-views*' => 'stored-views*',
+    ),
+    'views' => array(
+      '0' => 'mn_channels',
+      '1' => 'mn_channels_news',
+    ),
+    'block' => array(
+      'data_node_feeds_data_syndication' => array(
+        'module' => 'data_node',
+        'delta' => 'feeds_data_syndication',
+        'weight' => 18,
+        'region' => 'palette',
+        'status' => '0',
+        'label' => 'Data node: Active node form for Syndication',
+        'type' => 'context_ui',
+      ),
+    ),
+  );
+  $items[] = array(
+    'namespace' => 'mn',
     'attribute' => 'section',
     'value' => 'channels',
     'description' => '',
@@ -107,4 +137,53 @@ function _mn_channels_menu_default_items() {
 
 
   return $items;
+}
+
+/**
+ * Helper to implementation of hook_user_default_permissions().
+ */
+function _mn_channels_user_default_permissions() {
+  $permissions = array();
+
+  // Exported permission: create channel content
+  $permissions[] = array(
+    'name' => 'create channel content',
+    'roles' => array(
+      '0' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: delete any channel content
+  $permissions[] = array(
+    'name' => 'delete any channel content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: delete own channel content
+  $permissions[] = array(
+    'name' => 'delete own channel content',
+    'roles' => array(
+      '0' => 'authenticated user',
+    ),
+  );
+
+  // Exported permission: edit any channel content
+  $permissions[] = array(
+    'name' => 'edit any channel content',
+    'roles' => array(
+      '0' => 'admin',
+    ),
+  );
+
+  // Exported permission: edit own channel content
+  $permissions[] = array(
+    'name' => 'edit own channel content',
+    'roles' => array(
+      '0' => 'authenticated user',
+    ),
+  );
+
+  return $permissions;
 }
