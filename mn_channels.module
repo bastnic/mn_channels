@@ -26,7 +26,7 @@ function mn_channels_help($path, $arg) {
  */
 function mn_channels_enable() {
   // Create an example channel.
-  $nid = db_result(db_query("SELECT nid FROM {node} WHERE type = 'channel' LIMIT 1"));
+  $nid = db_result(db_query_range("SELECT nid FROM {node} WHERE type = 'channel'", 0, 1));
   if (!$nid) {
     global $user;
     $node = new stdClass();
@@ -37,7 +37,8 @@ function mn_channels_enable() {
     node_save($node);
   }
 
-  // Use MNDataHandler as data handler.
+  // Use MNDataHandler as data handler. The purpose of this handler is to
+  // avoid having items deleted that are part of a channel.
   // @todo: this is a stopgap until Data module supports handler plugins.
   $handler = array(
     'class' => 'MNChannelsDataHandler',
@@ -50,8 +51,20 @@ function mn_channels_enable() {
 /**
  * Implementation of hook_disable().
  */
-function mn_core_disable() {
+function mn_channels_disable() {
   variable_del('feeds_data_syndication_handler_class');
+}
+
+/**
+ * Implementation of hook_strongarm().
+ */
+function mn_channels_strongarm() {
+  return array(
+    'node_options_channel' => array (
+      0 => 'status',
+    ),
+    'upload_channel' => '0',
+  );
 }
 
 /**
