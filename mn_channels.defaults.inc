@@ -126,12 +126,12 @@ function _mn_channels_menu_default_items() {
     'title' => 'Channels',
     'path' => 'channels',
     'weight' => '2',
-    'description' => 'Channels are continuously updated collections of news that you can subscribe to. news that ',
+    'description' => 'Channels contain news organized around topics. People can view, print and subscribe to the items in channels.',
   );
   // Translatables
   array(
     t('Channels'),
-    t('Channels are continuously updated collections of news that you can subscribe to. news that '),
+    t('Channels contain news organized around topics. People can view, print and subscribe to the items in channels.'),
   );
 
 

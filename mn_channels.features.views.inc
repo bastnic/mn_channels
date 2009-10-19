@@ -202,6 +202,7 @@ function _mn_channels_views_default_views() {
     'type' => 'none',
   ));
   $handler->override_option('title', 'Channels');
+  $handler->override_option('empty_format', '1');
   $handler->override_option('items_per_page', 15);
   $handler->override_option('row_plugin', 'node');
   $handler->override_option('row_options', array(
@@ -291,7 +292,7 @@ function _mn_channels_views_default_views() {
   $handler->override_option('menu', array(
     'type' => 'normal',
     'title' => 'Channels',
-    'description' => 'Channels are continuously updated collections of news that you can subscribe to. news that ',
+    'description' => 'Channels contain news organized around topics. People can view, print and subscribe to the items in channels.',
     'weight' => '2',
     'name' => 'features',
   ));
@@ -302,6 +303,7 @@ function _mn_channels_views_default_views() {
     'weight' => 0,
   ));
   $handler = $view->new_display('block', 'Block: list of channels', 'block_1');
+  $handler->override_option('empty', 'No channels found.');
   $handler->override_option('items_per_page', 0);
   $handler->override_option('style_plugin', 'list');
   $handler->override_option('style_options', array(
@@ -370,7 +372,6 @@ function _mn_channels_views_default_views() {
   ));
   $handler->override_option('title', '');
   $handler->override_option('empty', '[error]');
-  $handler->override_option('empty_format', '1');
   $handler->override_option('block_description', '');
   $handler->override_option('block_caching', -1);
 
