@@ -35,6 +35,7 @@ function mn_channels_enable() {
     $node->type = 'channel';
     $node->body = "You can collect news into a channel. Users can read this channel and subscribe to it. This is an example channel. Rename it for your purposes or remove it if you don't need it.";
     node_save($node);
+    data_node_set_active('feeds_data_syndication', $node->nid);
   }
 
   // Use MNDataHandler as data handler. The purpose of this handler is to
