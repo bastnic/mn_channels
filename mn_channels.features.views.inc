@@ -124,8 +124,8 @@ function _mn_channels_views_default_views() {
         'strip_tags' => 1,
         'html' => 0,
       ),
-      'truncate' => '0',
       'exclude' => 0,
+      'truncate' => '0',
       'id' => 'teaser',
       'table' => 'node_revisions',
       'field' => 'teaser',
@@ -271,6 +271,34 @@ function _mn_channels_views_default_views() {
       'id' => 'item_count',
       'table' => 'data_table_node',
       'field' => 'item_count',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+    'body' => array(
+      'label' => '',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'help' => '',
+        'trim' => 1,
+        'max_length' => '150',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'strip_tags' => 1,
+        'html' => 0,
+      ),
+      'exclude' => 0,
+      'id' => 'body',
+      'table' => 'node_revisions',
+      'field' => 'body',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -447,6 +475,30 @@ function _mn_channels_views_default_views() {
       'id' => 'nid',
       'table' => 'node',
       'field' => 'nid',
+      'relationship' => 'feed_nid',
+    ),
+    'config' => array(
+      'label' => 'Source',
+      'alter' => array(
+        'alter_text' => FALSE,
+        'text' => '',
+        'make_link' => FALSE,
+        'path' => '',
+        'alt' => '',
+        'link_class' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'trim' => FALSE,
+        'max_length' => '',
+        'word_boundary' => TRUE,
+        'ellipsis' => TRUE,
+        'strip_tags' => FALSE,
+        'html' => FALSE,
+      ),
+      'exclude' => 1,
+      'id' => 'config',
+      'table' => 'feeds_source',
+      'field' => 'config',
       'relationship' => 'feed_nid',
     ),
     'url' => array(
@@ -824,7 +876,7 @@ function _mn_channels_views_default_views() {
       'style_options' => array(),
       'wildcard' => 'all',
       'wildcard_substitution' => 'All',
-      'title' => '',
+      'title' => 'New stories in %1',
       'breadcrumb' => '',
       'default_argument_type' => 'php',
       'default_argument' => '',
@@ -847,9 +899,8 @@ function _mn_channels_views_default_views() {
       'default_argument_php' => 'if (is_numeric(arg(1)) && in_array(arg(0), array(\'node\', \'channel\'))) { return arg(1); }',
       'validate_argument_node_type' => array(
         'book' => 0,
-        'feed' => 0,
-        'feed_term' => 0,
         'channel' => 0,
+        'feed' => 0,
       ),
       'validate_argument_node_access' => 0,
       'validate_argument_nid_type' => 'nid',
@@ -1137,7 +1188,7 @@ function _mn_channels_views_default_views() {
       'style_options' => array(),
       'wildcard' => 'all',
       'wildcard_substitution' => 'All',
-      'title' => '',
+      'title' => '%1 on the map',
       'breadcrumb' => '',
       'default_argument_type' => 'php',
       'default_argument' => '',
@@ -1160,9 +1211,8 @@ function _mn_channels_views_default_views() {
       'default_argument_php' => 'if (is_numeric(arg(1)) && in_array(arg(0), array(\'node\', \'channel\'))) { return arg(1); }',
       'validate_argument_node_type' => array(
         'book' => 0,
-        'feed' => 0,
-        'feed_term' => 0,
         'channel' => 0,
+        'feed' => 0,
       ),
       'validate_argument_node_access' => 0,
       'validate_argument_nid_type' => 'nid',
@@ -1492,7 +1542,7 @@ function _mn_channels_views_default_views() {
   $handler->override_option('style_options', array(
     'mission_description' => FALSE,
     'description' => array(
-      'feed_description' => 'The Latest News from MN',
+      'feed_description' => '',
     ),
     'fields' => array(
       'title' => 'title',
@@ -1530,6 +1580,33 @@ function _mn_channels_views_default_views() {
   $handler->override_option('sitename_title', FALSE);
   $handler = $view->new_display('mode', 'Mode: List', 'mode_1');
   $handler->override_option('fields', array(
+    'config' => array(
+      'label' => 'Source',
+      'alter' => array(
+        'alter_text' => FALSE,
+        'text' => '',
+        'make_link' => FALSE,
+        'path' => '',
+        'alt' => '',
+        'link_class' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'trim' => FALSE,
+        'max_length' => '',
+        'word_boundary' => TRUE,
+        'ellipsis' => TRUE,
+        'strip_tags' => FALSE,
+        'html' => FALSE,
+      ),
+      'exclude' => 1,
+      'id' => 'config',
+      'table' => 'feeds_source',
+      'field' => 'config',
+      'relationship' => 'feed_nid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
     'url' => array(
       'label' => 'URL',
       'alter' => array(
@@ -1706,11 +1783,11 @@ function _mn_channels_views_default_views() {
         'suffix' => '',
         'help' => '',
         'trim' => 1,
-        'max_length' => '75',
+        'max_length' => '500',
         'word_boundary' => 1,
         'ellipsis' => 1,
-        'strip_tags' => 1,
-        'html' => 0,
+        'strip_tags' => 0,
+        'html' => 1,
       ),
       'hilight_search' => 1,
       'exclude' => 0,
@@ -1962,7 +2039,7 @@ function _mn_channels_views_default_views() {
   ));
   $handler->override_option('mode_id', 'views-mode-map');
   $handler->override_option('mode_name', 'Map');
-  $handler = $view->new_display('attachment', 'Attachment', 'attachment_1');
+  $handler = $view->new_display('attachment', 'OpenLayers Data Layer', 'attachment_1');
   $handler->override_option('relationships', array(
     'feed_nid' => array(
       'label' => 'feeds_data_syndication.feed_nid -> node.nid',
@@ -2355,7 +2432,7 @@ function _mn_channels_views_default_views() {
       'value' => array(),
       'other_lat' => 'lat',
       'other_lon' => 'lon',
-      'name_field' => 'title_1',
+      'name_field' => 'title',
       'description_field' => 'description',
     ),
   ));
