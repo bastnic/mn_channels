@@ -2326,6 +2326,8 @@ function _mn_channels_views_default_views() {
   $handler->override_option('attachment_position', 'before');
   $handler->override_option('inherit_arguments', TRUE);
   $handler->override_option('inherit_exposed_filters', FALSE);
+  $handler->override_option('inherit_pager', FALSE);
+  $handler->override_option('render_pager', TRUE);
   $handler->override_option('displays', array());
 
   $views[$view->name] = $view;

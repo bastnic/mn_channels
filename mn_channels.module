@@ -73,7 +73,9 @@ function mn_channels_strongarm() {
  */
 function mn_channels_node_page_view($node, $cid = NULL) {
   drupal_set_title(t('News on @title', array('@title' => $node->title)));
-  context_set_by_condition('node', $node->type);
+  if ($plugin = context_get_plugin('condition', 'node')) {
+    $plugin->execute($node, 'view');
+  }
   $view = views_get_view('mn_channels_news');
   return $view->execute_display('page_1', array($node->nid));
 }
@@ -150,7 +152,7 @@ function mn_channels_views_pre_build(&$view) {
  * Yank out the channel link from where it does not belong.
  */
 function mn_channels_context_links_alter(&$links) {
-  if (isset($links['channel']) && context_get('mn', 'section') !== 'channels') {
+  if (isset($links['channel']) && !context_get('context', 'mn-section-channels')) {
     unset($links['channel']);
   }
 }

@@ -10,6 +10,15 @@ function mn_channels_context_default_contexts() {
 }
 
 /**
+ * Implementation of hook_ctools_plugin_api().
+ */
+function mn_channels_ctools_plugin_api() {
+  module_load_include('inc', 'mn_channels', 'mn_channels.defaults');
+  $args = func_get_args();
+  return call_user_func_array('_mn_channels_ctools_plugin_api', $args);
+}
+
+/**
  * Implementation of hook_menu_default_items().
  */
 function mn_channels_menu_default_items() {

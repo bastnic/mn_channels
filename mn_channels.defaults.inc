@@ -4,116 +4,162 @@
  * Helper to implementation of hook_context_default_contexts().
  */
 function _mn_channels_context_default_contexts() {
-  $items = array();
-
-  $items[] = array(
-    'namespace' => 'mn',
-    'attribute' => 'channels',
-    'value' => 'tools',
-    'description' => '',
+  $export = array();
+  $context = new stdClass;
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'mn-channels-tools';
+  $context->description = '';
+  $context->tag = '';
+  $context->conditions = array(
     'node' => array(
-      '0' => 'channel',
+      'values' => array(
+        '0' => 'channel',
+      ),
+      'options' => array(
+        'node_form' => TRUE,
+      ),
     ),
     'path' => array(
-      'feeds*' => 'feeds*',
-      'search*' => 'search*',
-      'stored-views*' => 'stored-views*',
+      'values' => array(
+        'feeds*' => 'feeds*',
+        'search*' => 'search*',
+        'stored-views*' => 'stored-views*',
+      ),
+      'options' => array(),
     ),
     'views' => array(
-      '0' => 'mn_channels',
-      '1' => 'mn_channels_news',
+      'values' => array(
+        '0' => 'mn_channels',
+        '1' => 'mn_channels_news',
+      ),
+      'options' => array(),
     ),
+  );
+  $context->reactions = array(
     'block' => array(
-      'data_node_feeds_data_syndication' => array(
-        'module' => 'data_node',
-        'delta' => 'feeds_data_syndication',
-        'weight' => 18,
-        'region' => 'palette',
-        'status' => '0',
-        'label' => 'Data node: Active node form for Syndication',
-        'type' => 'context_ui',
+      'blocks' => array(
+        'data_node-feeds_data_syndication' => array(
+          'module' => 'data_node',
+          'delta' => 'feeds_data_syndication',
+          'weight' => 18,
+          'region' => 'palette',
+          'status' => '0',
+          'label' => 'Data node: Active node form for Syndication',
+          'type' => 'context_ui',
+        ),
       ),
     ),
   );
-  $items[] = array(
-    'namespace' => 'mn',
-    'attribute' => 'section',
-    'value' => 'channels',
-    'description' => '',
+
+  $export['mn-channels-tools'] = $context;
+  $context = new stdClass;
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'mn-section-channels';
+  $context->description = '';
+  $context->tag = '';
+  $context->conditions = array(
     'node' => array(
-      '0' => 'channel',
+      'values' => array(
+        '0' => 'channel',
+      ),
+      'options' => array(
+        'node_form' => TRUE,
+      ),
     ),
     'views' => array(
-      '0' => 'mn_channels',
-      '1' => 'mn_channels_news',
+      'values' => array(
+        '0' => 'mn_channels',
+        '1' => 'mn_channels_news',
+      ),
+      'options' => array(),
     ),
+  );
+  $context->reactions = array(
     'block' => array(
-      'mn_core_print' => array(
-        'module' => 'mn_core',
-        'delta' => 'print',
-        'weight' => 20,
-        'region' => 'palette',
-        'status' => '0',
-        'label' => 'MN: Print controls',
-        'type' => 'context_ui',
-      ),
-      'views_modes_modes' => array(
-        'module' => 'views_modes',
-        'delta' => 'modes',
-        'weight' => 20,
-        'region' => 'page_tools',
-        'status' => '0',
-        'label' => 'Views mode links',
-        'type' => 'context_ui',
-      ),
-      'mn_core_formats' => array(
-        'module' => 'mn_core',
-        'delta' => 'formats',
-        'weight' => 21,
-        'region' => 'page_tools',
-        'status' => '0',
-        'label' => 'MN: Alternative formats',
-        'type' => 'context_ui',
-      ),
-      'views_mn_channels-block_1' => array(
-        'module' => 'views',
-        'delta' => 'mn_channels-block_1',
-        'weight' => -21,
-        'region' => 'left',
-        'status' => '0',
-        'label' => 'mn_channels: Block: list of channels',
-        'type' => 'context_ui',
-      ),
-      'views_mn_channels-block_2' => array(
-        'module' => 'views',
-        'delta' => 'mn_channels-block_2',
-        'weight' => 20,
-        'region' => 'right',
-        'status' => '0',
-        'label' => 'mn_channels: Block: channel node',
-        'type' => 'context_ui',
-      ),
-      'views_mn_channels_news-block_1' => array(
-        'module' => 'views',
-        'delta' => 'mn_channels_news-block_1',
-        'weight' => 21,
-        'region' => 'right',
-        'status' => '0',
-        'label' => 'mn_channels_news: Block: Trend graph',
-        'type' => 'context_ui',
-      ),
-      'views_mn_channels_news-block_2' => array(
-        'module' => 'views',
-        'delta' => 'mn_channels_news-block_2',
-        'weight' => 22,
-        'region' => 'right',
-        'status' => '0',
-        'label' => 'mn_channels_news: Block: Map',
-        'type' => 'context_ui',
+      'blocks' => array(
+        'mn_core-print' => array(
+          'module' => 'mn_core',
+          'delta' => 'print',
+          'weight' => 20,
+          'region' => 'palette',
+          'status' => '0',
+          'label' => 'MN: Print controls',
+          'type' => 'context_ui',
+        ),
+        'views_modes-modes' => array(
+          'module' => 'views_modes',
+          'delta' => 'modes',
+          'weight' => 20,
+          'region' => 'page_tools',
+          'status' => '0',
+          'label' => 'Views mode links',
+          'type' => 'context_ui',
+        ),
+        'mn_core-formats' => array(
+          'module' => 'mn_core',
+          'delta' => 'formats',
+          'weight' => 21,
+          'region' => 'page_tools',
+          'status' => '0',
+          'label' => 'MN: Alternative formats',
+          'type' => 'context_ui',
+        ),
+        'views-mn_channels-block_1' => array(
+          'module' => 'views',
+          'delta' => 'mn_channels-block_1',
+          'weight' => -21,
+          'region' => 'left',
+          'status' => '0',
+          'label' => 'mn_channels: Block: list of channels',
+          'type' => 'context_ui',
+        ),
+        'views-mn_channels-block_2' => array(
+          'module' => 'views',
+          'delta' => 'mn_channels-block_2',
+          'weight' => 20,
+          'region' => 'right',
+          'status' => '0',
+          'label' => 'mn_channels: Block: channel node',
+          'type' => 'context_ui',
+        ),
+        'views-mn_channels_news-block_1' => array(
+          'module' => 'views',
+          'delta' => 'mn_channels_news-block_1',
+          'weight' => 21,
+          'region' => 'right',
+          'status' => '0',
+          'label' => 'mn_channels_news: Block: Trend graph',
+          'type' => 'context_ui',
+        ),
+        'views-mn_channels_news-block_2' => array(
+          'module' => 'views',
+          'delta' => 'mn_channels_news-block_2',
+          'weight' => 22,
+          'region' => 'right',
+          'status' => '0',
+          'label' => 'mn_channels_news: Block: Map',
+          'type' => 'context_ui',
+        ),
       ),
     ),
   );
-  return $items;
+
+  $export['mn-section-channels'] = $context;
+  return $export;
+}
+
+/**
+ * Helper to implementation of hook_ctools_plugin_api().
+ */
+function _mn_channels_ctools_plugin_api() {
+  $args = func_get_args();
+  $module = array_shift($args);
+  $api = array_shift($args);
+  if ($module == "context" && $api == "context") {
+    return array("version" => 3);
+  }
 }
 
 /**
