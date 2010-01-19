@@ -57,18 +57,6 @@ function mn_channels_disable() {
 }
 
 /**
- * Implementation of hook_strongarm().
- */
-function mn_channels_strongarm() {
-  return array(
-    'node_options_channel' => array (
-      0 => 'status',
-    ),
-    'upload_channel' => '0',
-  );
-}
-
-/**
  * Override node callback. Invoked from mn_core.
  */
 function mn_channels_node_page_view($node, $cid = NULL) {

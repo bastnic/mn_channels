@@ -46,6 +46,15 @@ function mn_channels_user_default_permissions() {
 }
 
 /**
+ * Implementation of hook_strongarm().
+ */
+function mn_channels_strongarm() {
+  module_load_include('inc', 'mn_channels', 'mn_channels.defaults');
+  $args = func_get_args();
+  return call_user_func_array('_mn_channels_strongarm', $args);
+}
+
+/**
  * Implementation of hook_views_default_views().
  */
 function mn_channels_views_default_views() {
