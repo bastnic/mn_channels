@@ -1,5 +1,6 @@
 core = "6.x"
 dependencies[] = "data_node"
+dependencies[] = "feeds"
 dependencies[] = "features"
 dependencies[] = "flot"
 dependencies[] = "geotaxonomy"

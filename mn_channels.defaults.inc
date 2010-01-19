@@ -62,18 +62,17 @@ function _mn_channels_context_default_contexts() {
   $context->conditions = array(
     'node' => array(
       'values' => array(
-        '0' => 'channel',
+        'channel' => 'channel',
       ),
       'options' => array(
-        'node_form' => TRUE,
+        'node_form' => 1,
       ),
     ),
     'views' => array(
       'values' => array(
-        '0' => 'mn_channels',
-        '1' => 'mn_channels_news',
+        'mn_channels' => 'mn_channels',
+        'mn_channels_news' => 'mn_channels_news',
       ),
-      'options' => array(),
     ),
   );
   $context->reactions = array(
@@ -82,68 +81,48 @@ function _mn_channels_context_default_contexts() {
         'mn_core-print' => array(
           'module' => 'mn_core',
           'delta' => 'print',
-          'weight' => 20,
           'region' => 'palette',
-          'status' => '0',
-          'label' => 'MN: Print controls',
-          'type' => 'context_ui',
+          'weight' => 0,
         ),
         'views_modes-modes' => array(
           'module' => 'views_modes',
           'delta' => 'modes',
-          'weight' => 20,
           'region' => 'page_tools',
-          'status' => '0',
-          'label' => 'Views mode links',
-          'type' => 'context_ui',
+          'weight' => 0,
         ),
         'mn_core-formats' => array(
           'module' => 'mn_core',
           'delta' => 'formats',
-          'weight' => 21,
           'region' => 'page_tools',
-          'status' => '0',
-          'label' => 'MN: Alternative formats',
-          'type' => 'context_ui',
+          'weight' => 1,
         ),
         'views-mn_channels-block_1' => array(
           'module' => 'views',
           'delta' => 'mn_channels-block_1',
-          'weight' => -21,
           'region' => 'left',
-          'status' => '0',
-          'label' => 'mn_channels: Block: list of channels',
-          'type' => 'context_ui',
+          'weight' => 0,
         ),
         'views-mn_channels-block_2' => array(
           'module' => 'views',
           'delta' => 'mn_channels-block_2',
-          'weight' => 20,
           'region' => 'right',
-          'status' => '0',
-          'label' => 'mn_channels: Block: channel node',
-          'type' => 'context_ui',
+          'weight' => 0,
         ),
         'views-mn_channels_news-block_1' => array(
           'module' => 'views',
           'delta' => 'mn_channels_news-block_1',
-          'weight' => 21,
           'region' => 'right',
-          'status' => '0',
-          'label' => 'mn_channels_news: Block: Trend graph',
-          'type' => 'context_ui',
+          'weight' => 1,
         ),
         'views-mn_channels_news-block_2' => array(
           'module' => 'views',
           'delta' => 'mn_channels_news-block_2',
-          'weight' => 22,
           'region' => 'right',
-          'status' => '0',
-          'label' => 'mn_channels_news: Block: Map',
-          'type' => 'context_ui',
+          'weight' => 2,
         ),
       ),
     ),
+    'menu' => 'channels',
   );
 
   $export['mn-section-channels'] = $context;
@@ -245,7 +224,9 @@ function _mn_channels_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_channel';
-  $strongarm->value = array (0 => 'status');
+  $strongarm->value = array(
+    '0' => 'status',
+  );
 
   $export['node_options_channel'] = $strongarm;
   $strongarm = new stdClass;
