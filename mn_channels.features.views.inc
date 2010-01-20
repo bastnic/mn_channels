@@ -429,26 +429,21 @@ function _mn_channels_views_default_views() {
       ),
       'relationship' => 'none',
     ),
-    'data_table_node_rel' => array(
-      'label' => 'Relate this data table to data_table_node',
-      'required' => 0,
-      'id' => 'data_table_node_rel',
+    'id' => array(
+      'label' => 'Relate a data record to a term tid.',
+      'required' => 1,
+      'id' => 'id',
       'table' => 'feeds_data_syndication',
-      'field' => 'data_table_node_rel',
+      'field' => 'id',
       'relationship' => 'none',
     ),
-    'nid' => array(
-      'label' => 'Relate data_table_node to node table',
-      'required' => 0,
-      'id' => 'nid',
-      'table' => 'data_table_node',
-      'field' => 'nid',
-      'relationship' => 'data_table_node_rel',
-    ),
     'tid' => array(
+      'label' => 'Relate data_taxonomy to a term data.',
+      'required' => 1,
       'id' => 'tid',
-      'table' => 'data_table_term',
+      'table' => 'data_taxonomy',
       'field' => 'tid',
+      'relationship' => 'id',
     ),
   ));
   $handler->override_option('fields', array(
@@ -733,6 +728,12 @@ function _mn_channels_views_default_views() {
       'table' => 'term_geo',
       'field' => 'lon',
     ),
+    'name' => array(
+      'id' => 'name',
+      'table' => 'term_data',
+      'field' => 'name',
+      'relationship' => 'feed_nid',
+    ),
   ));
   $handler->override_option('sorts', array(
     'timestamp' => array(
@@ -747,24 +748,24 @@ function _mn_channels_views_default_views() {
     ),
   ));
   $handler->override_option('arguments', array(
-    'nid' => array(
-      'default_action' => 'default',
+    'tid' => array(
+      'default_action' => 'ignore',
       'style_plugin' => 'default_summary',
       'style_options' => array(),
       'wildcard' => 'all',
       'wildcard_substitution' => 'All',
-      'title' => '%1',
+      'title' => '',
       'breadcrumb' => '',
-      'default_argument_type' => 'node',
+      'default_argument_type' => 'fixed',
       'default_argument' => '',
       'validate_type' => 'none',
       'validate_fail' => 'not found',
       'break_phrase' => 0,
       'not' => 0,
-      'id' => 'nid',
-      'table' => 'node',
-      'field' => 'nid',
-      'relationship' => 'nid',
+      'id' => 'tid',
+      'table' => 'term_data',
+      'field' => 'tid',
+      'relationship' => 'tid',
       'validate_user_argument_type' => 'uid',
       'validate_user_roles' => array(
         '2' => 0,
@@ -776,13 +777,13 @@ function _mn_channels_views_default_views() {
       'default_argument_php' => '',
       'validate_argument_node_type' => array(
         'book' => 0,
-        'feed' => 0,
-        'feed_term' => 0,
         'channel' => 0,
+        'feed' => 0,
       ),
       'validate_argument_node_access' => 0,
       'validate_argument_nid_type' => 'nid',
       'validate_argument_vocabulary' => array(
+        '2' => 0,
         '1' => 0,
       ),
       'validate_argument_type' => 'tid',

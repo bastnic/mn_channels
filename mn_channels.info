@@ -1,5 +1,5 @@
 core = "6.x"
-dependencies[] = "data_node"
+dependencies[] = "data_taxonomy"
 dependencies[] = "feeds"
 dependencies[] = "features"
 dependencies[] = "flot"
