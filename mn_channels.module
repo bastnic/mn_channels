@@ -47,13 +47,6 @@ function mn_channels_enable() {
     'file' => 'MNChannelsDataHandler.inc',
   );
   variable_set('feeds_data_syndication_handler', $handler);
-
-  // Create a vocabulary for tags.
-  if (!variable_get('mn_channels_tags_vocab', 0)) {
-    $data = array('name' => 'Channel tags', 'required' => 1, 'relations' => 0, 'tags' => 1, 'nodes' => array('channel' => 1), 'help' => 'Articles with these tags will appear in this channel.');
-    taxonomy_save_vocabulary($data);
-    variable_set('mn_channels_tags_vocab', $data['vid']);
-  }
 }
 
 /**
