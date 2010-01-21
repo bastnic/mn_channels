@@ -69,7 +69,7 @@ function mn_channels_node_page_view($node, $cid = NULL) {
     $plugin->execute($node, 'view');
   }
   $view = views_get_view('mn_channels_news');
-  $output = $view->execute_display('page_1', array_keys($terms));
+  $output = $view->execute_display('page_1', $node->nid);
   if ($view->total_rows != 0) {
     return $output;
   }
