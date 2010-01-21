@@ -37,23 +37,6 @@ function mn_channels_enable() {
     node_save($node);
     data_node_set_active('feeds_data_syndication', $node->nid);
   }
-
-  // Use MNDataHandler as data handler. The purpose of this handler is to
-  // avoid having items deleted that are part of a channel.
-  // @todo: this is a stopgap until Data module supports handler plugins.
-  $handler = array(
-    'class' => 'MNChannelsDataHandler',
-    'module' => 'mn_channels',
-    'file' => 'MNChannelsDataHandler.inc',
-  );
-  variable_set('feeds_data_syndication_handler', $handler);
-}
-
-/**
- * Implementation of hook_disable().
- */
-function mn_channels_disable() {
-  variable_del('feeds_data_syndication_handler_class');
 }
 
 /**
