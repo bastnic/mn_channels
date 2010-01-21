@@ -8,54 +8,6 @@ function _mn_channels_context_default_contexts() {
   $context = new stdClass;
   $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
   $context->api_version = 3;
-  $context->name = 'mn-channels-tools';
-  $context->description = '';
-  $context->tag = '';
-  $context->conditions = array(
-    'node' => array(
-      'values' => array(
-        '0' => 'channel',
-      ),
-      'options' => array(
-        'node_form' => TRUE,
-      ),
-    ),
-    'path' => array(
-      'values' => array(
-        'feeds*' => 'feeds*',
-        'search*' => 'search*',
-        'stored-views*' => 'stored-views*',
-      ),
-      'options' => array(),
-    ),
-    'views' => array(
-      'values' => array(
-        '0' => 'mn_channels',
-        '1' => 'mn_channels_news',
-      ),
-      'options' => array(),
-    ),
-  );
-  $context->reactions = array(
-    'block' => array(
-      'blocks' => array(
-        'data_node-feeds_data_syndication' => array(
-          'module' => 'data_node',
-          'delta' => 'feeds_data_syndication',
-          'weight' => 18,
-          'region' => 'palette',
-          'status' => '0',
-          'label' => 'Data node: Active node form for Syndication',
-          'type' => 'context_ui',
-        ),
-      ),
-    ),
-  );
-
-  $export['mn-channels-tools'] = $context;
-  $context = new stdClass;
-  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
-  $context->api_version = 3;
   $context->name = 'mn-section-channels';
   $context->description = '';
   $context->tag = '';
