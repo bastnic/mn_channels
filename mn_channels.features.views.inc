@@ -904,6 +904,7 @@ function _mn_channels_views_default_views() {
   $handler->override_option('title', '');
   $handler->override_option('use_ajax', TRUE);
   $handler->override_option('items_per_page', 0);
+  $handler->override_option('distinct', 0);
   $handler->override_option('style_plugin', 'flot');
   $handler->override_option('style_options', array(
     'type' => 'line',
@@ -1179,17 +1180,9 @@ function _mn_channels_views_default_views() {
       'table' => 'data_taxonomy',
       'field' => 'tid_2',
       'relationship' => 'none',
-    ),
-    'tid' => array(
-      'label' => 'Relate data_taxonomy to a term data.',
-      'required' => 0,
-      'id' => 'tid',
-      'table' => 'data_taxonomy',
-      'field' => 'tid',
       'override' => array(
         'button' => 'Use default',
       ),
-      'relationship' => 'none',
     ),
   ));
   $handler->override_option('fields', array(
@@ -1314,82 +1307,6 @@ function _mn_channels_views_default_views() {
         'button' => 'Use default',
       ),
     ),
-    'lat' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'strip_tags' => 0,
-        'html' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'set_precision' => FALSE,
-      'precision' => 0,
-      'decimal' => '.',
-      'separator' => ',',
-      'prefix' => '',
-      'suffix' => '',
-      'exclude' => 0,
-      'id' => 'lat',
-      'table' => 'term_geo',
-      'field' => 'lat',
-      'relationship' => 'tid',
-      'override' => array(
-        'button' => 'Use default',
-      ),
-    ),
-    'lon' => array(
-      'label' => '',
-      'alter' => array(
-        'alter_text' => 0,
-        'text' => '',
-        'make_link' => 0,
-        'path' => '',
-        'link_class' => '',
-        'alt' => '',
-        'prefix' => '',
-        'suffix' => '',
-        'target' => '',
-        'help' => '',
-        'trim' => 0,
-        'max_length' => '',
-        'word_boundary' => 1,
-        'ellipsis' => 1,
-        'strip_tags' => 0,
-        'html' => 0,
-      ),
-      'empty' => '',
-      'hide_empty' => 0,
-      'empty_zero' => 0,
-      'set_precision' => FALSE,
-      'precision' => 0,
-      'decimal' => '.',
-      'separator' => ',',
-      'prefix' => '',
-      'suffix' => '',
-      'exclude' => 0,
-      'id' => 'lon',
-      'table' => 'term_geo',
-      'field' => 'lon',
-      'relationship' => 'tid',
-      'override' => array(
-        'button' => 'Use default',
-      ),
-    ),
     'guid' => array(
       'label' => '',
       'alter' => array(
@@ -1418,6 +1335,70 @@ function _mn_channels_views_default_views() {
       ),
       'relationship' => 'none',
     ),
+    'term_geo_Lat_1' => array(
+      'label' => 'Geo term lat for <em>1</em>',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'strip_tags' => 0,
+        'html' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'term_geo_Lat_1',
+      'table' => 'feeds_data_syndication',
+      'field' => 'term_geo_Lat_1',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
+    'term_geo_Lon_1' => array(
+      'label' => 'Geo term lon for <em>1</em>',
+      'alter' => array(
+        'alter_text' => 0,
+        'text' => '',
+        'make_link' => 0,
+        'path' => '',
+        'link_class' => '',
+        'alt' => '',
+        'prefix' => '',
+        'suffix' => '',
+        'target' => '',
+        'help' => '',
+        'trim' => 0,
+        'max_length' => '',
+        'word_boundary' => 1,
+        'ellipsis' => 1,
+        'strip_tags' => 0,
+        'html' => 0,
+      ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'exclude' => 0,
+      'id' => 'term_geo_Lon_1',
+      'table' => 'feeds_data_syndication',
+      'field' => 'term_geo_Lon_1',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('style_plugin', 'rss_fields');
   $handler->override_option('style_options', array(
@@ -1435,9 +1416,8 @@ function _mn_channels_views_default_views() {
       'pubDate' => 'timestamp',
     ),
     'georss' => array(
-      'enabled' => 1,
-      'lat' => 'lat',
-      'lon' => 'lon',
+      'lat' => 'term_geo_Lat_1',
+      'lon' => 'term_geo_Lon_1',
     ),
   ));
   $handler->override_option('row_plugin', '');
@@ -1840,6 +1820,17 @@ function _mn_channels_views_default_views() {
       ),
       'relationship' => 'none',
     ),
+    'id' => array(
+      'label' => 'Relate a data record to a term tid.',
+      'required' => 1,
+      'id' => 'id',
+      'table' => 'feeds_data_syndication',
+      'field' => 'id',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
     'tid_2' => array(
       'label' => 'Relate data taxonomy to nodes with term.',
       'required' => 1,
@@ -1857,7 +1848,18 @@ function _mn_channels_views_default_views() {
       'override' => array(
         'button' => 'Use default',
       ),
-      'relationship' => 'none',
+      'relationship' => 'id',
+    ),
+    'tid_geo' => array(
+      'label' => 'Relate term data to geo data.',
+      'required' => 1,
+      'id' => 'tid_geo',
+      'table' => 'term_data',
+      'field' => 'tid_geo',
+      'relationship' => 'tid',
+      'override' => array(
+        'button' => 'Use default',
+      ),
     ),
   ));
   $handler->override_option('fields', array(
@@ -2025,7 +2027,7 @@ function _mn_channels_views_default_views() {
       'id' => 'lat',
       'table' => 'term_geo',
       'field' => 'lat',
-      'relationship' => 'tid',
+      'relationship' => 'tid_geo',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -2063,7 +2065,7 @@ function _mn_channels_views_default_views() {
       'id' => 'lon',
       'table' => 'term_geo',
       'field' => 'lon',
-      'relationship' => 'tid',
+      'relationship' => 'tid_geo',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -2102,6 +2104,19 @@ function _mn_channels_views_default_views() {
       ),
     ),
   ));
+  $handler->override_option('sorts', array());
+  $handler->override_option('filters', array(
+    'unique_term' => array(
+      'id' => 'unique_term',
+      'table' => 'term_geo',
+      'field' => 'unique_term',
+      'relationship' => 'tid_geo',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+  ));
+  $handler->override_option('distinct', 0);
   $handler->override_option('style_plugin', 'openlayers_data');
   $handler->override_option('style_options', array(
     'grouping' => 'name',
