@@ -156,6 +156,15 @@ function _mn_channels_user_default_permissions() {
     ),
   );
 
+  // Exported permission: edit data taxonomy relations
+  $permissions[] = array(
+    'name' => 'edit data taxonomy relations',
+    'roles' => array(
+      '0' => 'admin',
+      '1' => 'authenticated user',
+    ),
+  );
+
   // Exported permission: edit own channel content
   $permissions[] = array(
     'name' => 'edit own channel content',
