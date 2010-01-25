@@ -681,6 +681,7 @@ function _mn_channels_views_default_views() {
         '2' => 2,
         '1' => 0,
       ),
+      'path' => 'feeds/%/!term',
       'exclude' => 0,
       'id' => 'data_taxonomy_form',
       'table' => 'feeds_data_syndication',
