@@ -78,18 +78,3 @@ function mn_channels_context_links_alter(&$links) {
     unset($links['channel']);
   }
 }
-
-/**
- * Implementation of hook_data_delete_query_alter().
- * Exempt items from deletion that have been added to a channel.
- */
-function mn_channels_data_delete_query_alter(DataQuery $query, $table_name) {
-  if ($table_name == 'feeds_data_syndication') {
-    $query->addJoin('data_taxonomy', 'feeds_data_syndication.id = data_taxonomy.id', 'LEFT JOIN');
-    $query->addJoin('term_node', 'data_taxonomy.tid = term_node.tid', 'LEFT JOIN');
-    $query->addWhere('term_node.tid IS NULL');
-    $query->subject = array('data_taxonomy' => 'data_taxonomy');
-    $query->execute();
-    $query->subject = array('feeds_data_syndication' => 'feeds_data_syndication');
-  }
-}
