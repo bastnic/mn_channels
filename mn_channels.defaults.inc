@@ -160,8 +160,7 @@ function _mn_channels_user_default_permissions() {
   $permissions[] = array(
     'name' => 'edit data taxonomy relations',
     'roles' => array(
-      '0' => 'admin',
-      '1' => 'authenticated user',
+      '0' => 'authenticated user',
     ),
   );
 
