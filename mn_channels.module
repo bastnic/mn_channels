@@ -41,8 +41,15 @@ function mn_channels_enable() {
 
 /**
  * Override node callback. Invoked from mn_core.
+ *
+ * @todo Refactor, current architecture results in two same listings on node
+ * callback and on view callback; further results in weird interations between
+ * purl and listings.
  */
 function mn_channels_node_page_view($node, $cid = NULL) {
+  if (isset($_GET['display']) && $_GET['display'] != 'default') {
+    drupal_goto('channel/'. $node->nid, 'display='. urlencode($_GET['display']));
+  }
   $terms = array();
   foreach ($node->taxonomy as $term) {
     $terms[$term->tid] = $term->name;
