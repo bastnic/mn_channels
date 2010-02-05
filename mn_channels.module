@@ -9,11 +9,11 @@ function mn_channels_help($path, $arg) {
   switch ($path) {
     case 'channels':
       $output = '<p>';
-      $output .= t('<em>Channels</em> are groups of stories that have been picked by users that relate to the same topic. You can view the stories in each channel by clicking on its title in the left-hand sidebar.');
+      $output .= t('<em>Channels</em> are groups of related stories. You can view the stories in a channel by clicking on its title in the left-hand sidebar.');
       $output .= "</p>";
       if (node_access('create', 'channel')) {
         $output .= "<ul>";
-        $output .= "<li>". t("!create a new channel. You can begin adding stories to it by setting it as the active channel on Feeds and Search pages using the star icon to your lower right.", array('!create' => l(t('Create'), 'node/add/channel'))) ."</li>";
+        $output .= "<li>". t("!create a new channel. Choose one or more tags for the channel and stories with any of the those tags will be included.", array('!create' => l(t('Create'), 'node/add/channel'))) ."</li>";
         $output .= "</ul>";
       }
       return $output;
