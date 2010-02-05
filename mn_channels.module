@@ -34,8 +34,15 @@ function mn_channels_enable() {
     $node->title = "Example channel";
     $node->type = 'channel';
     $node->body = "You can collect news into a channel. Users can read this channel and subscribe to it. This is an example channel. Rename it for your purposes or remove it if you don't need it.";
+
+    $example_term = array(
+      'vid' => 2, // Refers to default vid for the "Channel tags" vocabulary.
+      'name' => 'example tag',
+    );
+    taxonomy_save_term($example_term);
+    $node->taxonomy[] = $example_term['tid'];
+
     node_save($node);
-    data_node_set_active('feeds_data_syndication', $node->nid);
   }
 }
 
