@@ -1808,7 +1808,7 @@ function _mn_channels_views_default_views() {
   ));
   $handler->override_option('mode_id', 'views-mode-map');
   $handler->override_option('mode_name', 'Map');
-  $handler = $view->new_display('attachment', 'OpenLayers Data Layer', 'attachment_1');
+  $handler = $view->new_display('openlayers', 'OpenLayers Data', 'openlayers_1');
   $handler->override_option('relationships', array(
     'feed_nid' => array(
       'label' => 'feeds_data_syndication.feed_nid -> node.nid',
@@ -1913,9 +1913,6 @@ function _mn_channels_views_default_views() {
       'table' => 'feeds_source',
       'field' => 'config',
       'relationship' => 'feed_nid',
-      'override' => array(
-        'button' => 'Use default',
-      ),
     ),
     'url' => array(
       'label' => 'URL',
@@ -2113,27 +2110,30 @@ function _mn_channels_views_default_views() {
       'field' => 'unique_term',
       'relationship' => 'tid_geo',
       'override' => array(
-        'button' => 'Override',
+        'button' => 'Use default',
       ),
     ),
   ));
-  $handler->override_option('distinct', 0);
+  $handler->override_option('items_per_page', 100);
   $handler->override_option('style_plugin', 'openlayers_data');
   $handler->override_option('style_options', array(
     'grouping' => 'name',
     'data_source' => array(
-      'value' => array(),
+      'value' => array(
+        'other_latlon' => 'other_latlon',
+      ),
       'other_lat' => 'lat',
       'other_lon' => 'lon',
+      'openlayers_wkt' => 'nid',
+      'other_top' => 'nid',
+      'other_right' => 'nid',
+      'other_bottom' => 'nid',
+      'other_left' => 'nid',
       'name_field' => 'title',
       'description_field' => 'description',
     ),
   ));
-  $handler->override_option('attachment_position', 'before');
-  $handler->override_option('inherit_arguments', TRUE);
-  $handler->override_option('inherit_exposed_filters', FALSE);
-  $handler->override_option('inherit_pager', FALSE);
-  $handler->override_option('render_pager', TRUE);
+  $handler->override_option('row_plugin', '');
   $handler->override_option('displays', array());
 
   $views[$view->name] = $view;
