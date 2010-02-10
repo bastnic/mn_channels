@@ -747,6 +747,9 @@ function _mn_channels_views_default_views() {
       'validate_argument_transform' => 0,
       'validate_user_restrict_roles' => 0,
       'validate_argument_php' => '',
+      'override' => array(
+        'button' => 'Override',
+      ),
     ),
   ));
   $handler->override_option('access', array(
@@ -2103,6 +2106,54 @@ function _mn_channels_views_default_views() {
     ),
   ));
   $handler->override_option('sorts', array());
+  $handler->override_option('arguments', array(
+    'nid' => array(
+      'default_action' => 'default',
+      'style_plugin' => 'default_summary',
+      'style_options' => array(),
+      'wildcard' => 'all',
+      'wildcard_substitution' => 'All',
+      'title' => '%1',
+      'breadcrumb' => '',
+      'default_argument_type' => 'php',
+      'default_argument' => '',
+      'validate_type' => 'none',
+      'validate_fail' => 'not found',
+      'break_phrase' => 0,
+      'not' => 0,
+      'id' => 'nid',
+      'table' => 'node',
+      'field' => 'nid',
+      'relationship' => 'tid_2',
+      'validate_user_argument_type' => 'uid',
+      'validate_user_roles' => array(
+        '2' => 0,
+        '3' => 0,
+      ),
+      'default_options_div_prefix' => '',
+      'default_argument_user' => 0,
+      'default_argument_fixed' => '',
+      'default_argument_php' => 'return arg(1);',
+      'validate_argument_node_type' => array(
+        'book' => 0,
+        'channel' => 0,
+        'feed' => 0,
+      ),
+      'validate_argument_node_access' => 0,
+      'validate_argument_nid_type' => 'nid',
+      'validate_argument_vocabulary' => array(
+        '2' => 0,
+        '1' => 0,
+      ),
+      'validate_argument_type' => 'tid',
+      'validate_argument_transform' => 0,
+      'validate_user_restrict_roles' => 0,
+      'validate_argument_php' => '',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+  ));
   $handler->override_option('filters', array(
     'unique_term' => array(
       'id' => 'unique_term',
