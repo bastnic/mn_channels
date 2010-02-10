@@ -76,6 +76,11 @@ function _mn_channels_context_default_contexts() {
     ),
     'menu' => 'channels',
   );
+  $context->condition_mode = 0;
+
+  $translatables['mn-section-channels'] = array(
+
+  );
 
   $export['mn-section-channels'] = $context;
   return $export;
