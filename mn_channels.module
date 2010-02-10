@@ -74,7 +74,7 @@ function mn_channels_node_page_view($node, $cid = NULL) {
   $output .= '<p>'. t('There are no articles in this channel.') .'</p>';
   if (user_access('edit data taxonomy relations')) {
     $items = array(
-      t('Tag one or more articles with %terms to add them to this channel.', array('%terms' => implode($terms, true))),
+      t('Tag one or more articles with %terms to add them to this channel.', array('%terms' => implode(", ", $terms))),
       t('!edit to change the tags that add an article to a channel.', array('!edit' => l(t('Edit the channel'), 'node/'. $node->nid .'/edit'))),
     );
     $output .= theme('item_list', $items);
