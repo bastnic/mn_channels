@@ -1953,6 +1953,7 @@ function _mn_channels_views_default_views() {
         'alt' => '',
         'prefix' => '',
         'suffix' => '',
+        'target' => '_top',
         'help' => '',
         'trim' => 0,
         'max_length' => '',
