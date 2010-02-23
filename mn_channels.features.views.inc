@@ -1961,11 +1961,18 @@ function _mn_channels_views_default_views() {
         'strip_tags' => 0,
         'html' => 0,
       ),
+      'empty' => '',
+      'hide_empty' => 0,
+      'empty_zero' => 0,
+      'hilight_search' => 0,
       'exclude' => 0,
       'id' => 'title',
       'table' => 'feeds_data_syndication',
       'field' => 'title',
       'relationship' => 'none',
+      'override' => array(
+        'button' => 'Use default',
+      ),
     ),
     'description' => array(
       'label' => '',
