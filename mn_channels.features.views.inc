@@ -243,11 +243,11 @@ function _mn_channels_views_default_views() {
       ),
       'relationship' => 'none',
     ),
-    'item_count' => array(
+    'item_count_unmarked' => array(
       'label' => '',
       'alter' => array(
         'alter_text' => 1,
-        'text' => '[item_count] stories',
+        'text' => '[item_count_unmarked] stories',
         'make_link' => 0,
         'path' => '',
         'link_class' => '',
@@ -267,9 +267,9 @@ function _mn_channels_views_default_views() {
       'hide_empty' => 0,
       'empty_zero' => 0,
       'exclude' => 0,
-      'id' => 'item_count',
+      'id' => 'item_count_unmarked',
       'table' => 'data_taxonomy',
-      'field' => 'item_count',
+      'field' => 'item_count_unmarked',
       'override' => array(
         'button' => 'Use default',
       ),
@@ -433,6 +433,19 @@ function _mn_channels_views_default_views() {
       'id' => 'tid_2',
       'table' => 'data_taxonomy',
       'field' => 'tid_2',
+      'relationship' => 'none',
+    ),
+    'vapi_feeds_data_syndication_id' => array(
+      'label' => 'Votes',
+      'required' => 0,
+      'votingapi' => array(
+        'value_type' => '',
+        'tag' => '',
+      ),
+      'current_user' => 0,
+      'id' => 'vapi_feeds_data_syndication_id',
+      'table' => 'feeds_data_syndication',
+      'field' => 'vapi_feeds_data_syndication_id',
       'relationship' => 'none',
     ),
   ));
@@ -752,6 +765,26 @@ function _mn_channels_views_default_views() {
       ),
     ),
   ));
+  $handler->override_option('filters', array(
+    'value' => array(
+      'operator' => 'empty',
+      'value' => array(
+        'value' => '',
+        'min' => '',
+        'max' => '',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'value',
+      'table' => 'votingapi_vote',
+      'field' => 'value',
+      'relationship' => 'vapi_feeds_data_syndication_id',
+    ),
+  ));
   $handler->override_option('access', array(
     'type' => 'perm',
     'perm' => 'access content',
@@ -903,6 +936,27 @@ function _mn_channels_views_default_views() {
         'button' => 'Use default',
       ),
       'relationship' => 'none',
+    ),
+    'value' => array(
+      'operator' => 'empty',
+      'value' => array(
+        'value' => '',
+        'min' => '',
+        'max' => '',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'value',
+      'table' => 'votingapi_vote',
+      'field' => 'value',
+      'relationship' => 'vapi_feeds_data_syndication_id',
+      'override' => array(
+        'button' => 'Use default',
+      ),
     ),
   ));
   $handler->override_option('title', '');
@@ -1187,6 +1241,22 @@ function _mn_channels_views_default_views() {
       'override' => array(
         'button' => 'Use default',
       ),
+    ),
+    'vapi_feeds_data_syndication_id' => array(
+      'label' => 'Votes',
+      'required' => 0,
+      'votingapi' => array(
+        'value_type' => '',
+        'tag' => '',
+      ),
+      'current_user' => 0,
+      'id' => 'vapi_feeds_data_syndication_id',
+      'table' => 'feeds_data_syndication',
+      'field' => 'vapi_feeds_data_syndication_id',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
     ),
   ));
   $handler->override_option('fields', array(
@@ -1865,6 +1935,22 @@ function _mn_channels_views_default_views() {
         'button' => 'Use default',
       ),
     ),
+    'vapi_feeds_data_syndication_id' => array(
+      'label' => 'Votes',
+      'required' => 0,
+      'votingapi' => array(
+        'value_type' => '',
+        'tag' => '',
+      ),
+      'current_user' => 0,
+      'id' => 'vapi_feeds_data_syndication_id',
+      'table' => 'feeds_data_syndication',
+      'field' => 'vapi_feeds_data_syndication_id',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+      'relationship' => 'none',
+    ),
   ));
   $handler->override_option('fields', array(
     'nid' => array(
@@ -2168,6 +2254,27 @@ function _mn_channels_views_default_views() {
       'table' => 'term_geo',
       'field' => 'unique_term',
       'relationship' => 'tid_geo',
+      'override' => array(
+        'button' => 'Use default',
+      ),
+    ),
+    'value' => array(
+      'operator' => 'empty',
+      'value' => array(
+        'value' => '',
+        'min' => '',
+        'max' => '',
+      ),
+      'group' => '0',
+      'exposed' => FALSE,
+      'expose' => array(
+        'operator' => FALSE,
+        'label' => '',
+      ),
+      'id' => 'value',
+      'table' => 'votingapi_vote',
+      'field' => 'value',
+      'relationship' => 'vapi_feeds_data_syndication_id',
       'override' => array(
         'button' => 'Use default',
       ),

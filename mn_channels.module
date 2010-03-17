@@ -22,6 +22,16 @@ function mn_channels_help($path, $arg) {
 }
 
 /**
+ * Implementation of hook_views_api().
+ */
+function mn_channels_views_api() {
+  return array(
+    'api' => '2.0',
+    'path' => drupal_get_path('module', 'mn_channels') .'/views',
+  );
+}
+
+/**
  * Implementation of hook_enable().
  */
 function mn_channels_enable() {
