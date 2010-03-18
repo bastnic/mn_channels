@@ -2616,6 +2616,10 @@ function _mn_channels_views_default_views() {
   ));
   $handler->override_option('row_plugin', '');
   $handler->override_option('displays', array());
+  $handler = $view->new_display('block', 'Block: News in channel', 'block_3');
+  $handler->override_option('use_pager', '0');
+  $handler->override_option('block_description', '');
+  $handler->override_option('block_caching', -1);
 
   $views[$view->name] = $view;
 
