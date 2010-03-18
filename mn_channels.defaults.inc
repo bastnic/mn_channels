@@ -60,18 +60,6 @@ function _mn_channels_context_default_contexts() {
           'region' => 'right',
           'weight' => 0,
         ),
-        'views-mn_channels_news-block_1' => array(
-          'module' => 'views',
-          'delta' => 'mn_channels_news-block_1',
-          'region' => 'right',
-          'weight' => 1,
-        ),
-        'views-mn_channels_news-block_2' => array(
-          'module' => 'views',
-          'delta' => 'mn_channels_news-block_2',
-          'region' => 'right',
-          'weight' => 2,
-        ),
       ),
     ),
     'menu' => 'channels',
@@ -79,9 +67,55 @@ function _mn_channels_context_default_contexts() {
   $context->condition_mode = 0;
 
   $translatables['mn-section-channels'] = array(
+
   );
 
   $export['mn-section-channels'] = $context;
+  $context = new stdClass;
+  $context->disabled = FALSE; /* Edit this to true to make a default context disabled initially */
+  $context->api_version = 3;
+  $context->name = 'mn-section-channels-notrash';
+  $context->description = '';
+  $context->tag = '';
+  $context->conditions = array(
+    'views' => array(
+      'values' => array(
+        'mn_channels_news' => 'mn_channels_news',
+      ),
+    ),
+    'views_modes' => array(
+      'values' => array(
+        'default' => 'default',
+        'views-mode-list' => 'views-mode-list',
+        'views-mode-map' => 'views-mode-map',
+      ),
+    ),
+  );
+  $context->reactions = array(
+    'block' => array(
+      'blocks' => array(
+        'views-mn_channels_news-block_1' => array(
+          'module' => 'views',
+          'delta' => 'mn_channels_news-block_1',
+          'region' => 'right',
+          'weight' => 0,
+        ),
+        'views-mn_channels_news-block_2' => array(
+          'module' => 'views',
+          'delta' => 'mn_channels_news-block_2',
+          'region' => 'right',
+          'weight' => 1,
+        ),
+      ),
+    ),
+  );
+  $context->condition_mode = 1;
+
+  $translatables['mn-section-channels-notrash'] = array(
+
+  );
+
+  $export['mn-section-channels-notrash'] = $context;
   return $export;
 }
 
