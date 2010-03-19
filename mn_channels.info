@@ -1,5 +1,6 @@
 core = "6.x"
 dependencies[] = "data_taxonomy"
+dependencies[] = "votingapi"
 dependencies[] = "strongarm"
 dependencies[] = "feeds"
 dependencies[] = "features"
