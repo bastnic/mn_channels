@@ -2470,7 +2470,7 @@ function _mn_channels_views_default_views() {
       ),
     ),
   ));
-  $handler->override_option('items_per_page', 100);
+  $handler->override_option('items_per_page', 15);
   $handler->override_option('style_plugin', 'openlayers_data');
   $handler->override_option('style_options', array(
     'grouping' => 'name',
