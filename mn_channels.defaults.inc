@@ -87,7 +87,6 @@ function _mn_channels_context_default_contexts() {
       'values' => array(
         'default' => 'default',
         'views-mode-list' => 'views-mode-list',
-        'views-mode-map' => 'views-mode-map',
       ),
     ),
   );
