@@ -440,8 +440,8 @@ function _mn_channels_views_default_views() {
       'label' => 'Votes',
       'required' => 0,
       'votingapi' => array(
-        'value_type' => '',
-        'tag' => '',
+        'value_type' => 'mark',
+        'tag' => 'trash',
       ),
       'current_user' => 0,
       'id' => 'vapi_feeds_data_syndication_id',
@@ -1253,8 +1253,8 @@ function _mn_channels_views_default_views() {
       'label' => 'Votes',
       'required' => 0,
       'votingapi' => array(
-        'value_type' => '',
-        'tag' => '',
+        'value_type' => 'mark',
+        'tag' => 'trash',
       ),
       'current_user' => 0,
       'id' => 'vapi_feeds_data_syndication_id',
@@ -2153,8 +2153,8 @@ function _mn_channels_views_default_views() {
       'label' => 'Votes',
       'required' => 0,
       'votingapi' => array(
-        'value_type' => '',
-        'tag' => '',
+        'value_type' => 'mark',
+        'tag' => 'trash',
       ),
       'current_user' => 0,
       'id' => 'vapi_feeds_data_syndication_id',
